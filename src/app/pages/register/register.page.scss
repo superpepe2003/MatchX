@@ -1,0 +1,42 @@
+    .login-icon {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 25% !important;
+    }
+    
+    .content-relative {
+        position: relative;
+    }
+    
+    .boton-bottom {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+    }
+    
+    ion-segment ion-icon {
+        zoom: 1.6;
+        color: rgb(109, 51, 51);
+    }
+    
+    form {
+        display: block;
+        height: 100% !important;
+    }
+    
+    ion-slides {
+        height: 100% !important;
+        
+    }
+    
+    ion-slide {
+        height: 100% !important;
+        overflow-y: scroll;
+        display: block;
+    }
+    
+    .segment-button-checked {
+        background: rgb(207, 173, 173);
+        color: var(--ion-color-primary);
+    }

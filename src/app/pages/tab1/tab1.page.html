@@ -1,0 +1,26 @@
+<ion-content [fullscreen]="true">
+
+<ion-avatar>
+    <img [src]="'/assets/avatars/' + this.mAuth.usuario.avatar">
+    <ion-chip class="nick-class">
+        <ion-label class="nick-label-class">{{ this.mAuth.usuario.nick }}</ion-label>
+    </ion-chip>
+</ion-avatar>
+
+<br><br>
+
+<div class="d-flex justify-content-around">
+
+    <ion-button expand="full" class="boton"
+                (click)="onlogout()">
+        Logout
+    </ion-button>
+
+    <ion-button expand="full" class="boton"
+                (click)="onPerfil()">
+        Perfil 
+    </ion-button>
+
+</div>
+
+</ion-content>

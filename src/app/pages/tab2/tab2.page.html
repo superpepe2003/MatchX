@@ -1,0 +1,188 @@
+
+<div class="card-container">
+    <sc-card *ngFor="let user of users; let i = index;" 
+            class="image-slide d-flex"
+            [style]=" ('/assets/fondos/' + user.fondo) | domSanitizer "
+            [orientation]="orientation" 
+            [callLike]="user.likeEvent"
+            [tinder-card]="overlay" 
+            (onLike)="onCardLike($event, user.uid)"
+            >
+        
+            <!-- ************* -->
+            <!-- Avatar y nick -->
+            <!-- ************* -->
+
+            <ion-avatar>
+                <img [src]="'/assets/avatars/' + user.avatar">
+                <ion-chip class="nick-class">
+                    <ion-label class="nick-label-class">{{ user.nick }}</ion-label>
+                </ion-chip>
+            </ion-avatar>
+            
+            <!-- ************* -->
+            <!-- estudios y altura -->
+            <!-- ************* -->
+            <br>
+            <div class = "datos-particulares-class">
+                <div *ngIf="user.estudios" class="datos-particulares-ionchip">
+                    <ion-label>Estudios: {{ user.estudios }}</ion-label>
+                </div>
+                <div *ngIf="user.altura" class="datos-particulares-ionchip">
+                    Mido: {{ user.altura }}
+                </div>
+            </div>
+
+            <!-- ************* -->
+            <!-- ionchip con datos -->
+            <!-- ************* -->
+            <br>
+
+            <ion-grid fixed>
+                <ion-row>
+                    <ion-col size="6">
+
+                        <ion-chip *ngIf="user.comida">
+                            <ion-icon color="primary" name="restaurant"></ion-icon>
+                            <ion-label>Comida: {{ user.comida }}</ion-label>
+                        </ion-chip>
+
+                    </ion-col>
+                    <ion-col size="6">
+                        
+                        <ion-chip *ngIf="user.deporte">
+                            <ion-icon color="secondary" name="football"></ion-icon>
+                            <ion-label>Deporte: {{ user.deporte }}</ion-label>
+                        </ion-chip>
+
+                    </ion-col>
+                </ion-row>
+            </ion-grid>    
+            <br>
+            <ion-grid fixed>
+                <ion-row>
+                    <ion-col size="6">
+
+                        <ion-chip *ngIf="user.lugar">
+                            <ion-icon color="primary" name="airplane"></ion-icon>
+                            <ion-label>Lugar: {{ user.lugar }} </ion-label>
+                        </ion-chip>
+
+                    </ion-col>                    
+                </ion-row>
+            </ion-grid>
+            <br>
+            <div *ngIf="user.cita" class="align-self-center card-cita">
+                <ion-label>'{{ user.cita }}'</ion-label>
+            </div>
+
+    </sc-card>
+
+
+
+</div>
+<div class="footer">
+
+    <button class="btn btn btn-light btn-round2" (click)="onlike(false)">
+        <i class="fas fa-times fa-3x" style="color: gray"></i>
+    </button>
+    <button class="btn btn btn-light btn-round2" (click)="onlike(true)">
+        <i class="fas fa-heart fa-3x" style="color: red"></i>
+    </button>
+
+</div>
+
+<div class="glassMatch animated heartBeat slow" *ngIf="banderaSplash">
+    
+        <ion-grid fixed class="grid-splash">
+            <ion-row class="fila-texto">
+                <ion-col size="12">
+                    <h1 class="ion-text-center text-color-match">Es 1 Match</h1>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="this.service.usuario && this.userMatch">
+                <ion-col size="4">
+                    <ion-avatar class="avatar-splash">
+                        <img [src]="'/assets/avatars/' + this.service.usuario.avatar">
+                        <ion-chip class="nick-class">
+                            <ion-label class="nick-label-class">{{ this.service.usuario.nick }}</ion-label>
+                        </ion-chip>
+                    </ion-avatar>
+                </ion-col>
+                <ion-col size="4"></ion-col>
+                <ion-col size="4">
+                    <ion-avatar class="avatar-splash">
+                        <img [src]="'/assets/avatars/' + this.userMatch.avatar">
+                        <ion-chip class="nick-class">
+                            <ion-label class="nick-label-class">{{ this.userMatch.nick }}</ion-label>
+                        </ion-chip>
+                    </ion-avatar>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+</div>
+
+
+
+
+
+
+
+
+
+    <!-- <ion-slides>
+        <ion-slide *ngFor="let user of users">
+
+            <ion-card class="card-color" mode="ios" class="image-slide" [style]=" ('/assets/fondos/' + user.fondo) | domSanitizer ">
+                <ion-card-title class="card-title-color ">
+                    <br>
+                    <ion-avatar>
+                        <img [src]="'/assets/avatars/' + user.avatar">
+                    </ion-avatar>
+                    <ion-chip>
+                        <ion-label>{{ user.nick }}</ion-label>
+                    </ion-chip>
+                    <br>
+                    <br>
+                    <ion-chip *ngIf="user.estudios">
+                        <ion-label>Estudios: {{ user.estudios }}</ion-label>
+                    </ion-chip>
+                </ion-card-title>
+                <ion-card-content>
+                    <ion-chip *ngIf="user.altura">
+                        Mido: {{ user.altura }}
+                    </ion-chip>
+                    <br><br>
+                    <ion-chip *ngIf="user.comida">
+                        <ion-icon color="primary" name="restaurant"></ion-icon>
+                        <ion-label>Comida: {{ user.comida }}</ion-label>
+                    </ion-chip>
+                    
+                    <ion-chip *ngIf="user.deporte">
+                        <ion-icon color="secondary" name="football"></ion-icon>
+                        <ion-label>Deporte: {{ user.deporte }}</ion-label>
+                    </ion-chip>
+                    <br><br>
+                    <ion-chip *ngIf="user.lugar">
+                        <ion-icon color="primary" name="airplane"></ion-icon>
+                        <ion-label>Lugar: {{ user.lugar }} </ion-label>
+                    </ion-chip>
+                    <br><br>
+                    <ion-chip *ngIf="user.acercademi">
+                        <ion-label>{{ user.acercademi }}</ion-label>
+                    </ion-chip>
+                </ion-card-content>
+
+            </ion-card>
+         
+            <ion-fab size="large" vertical="bottom" horizontal="center" slot="fixed">
+                <ion-fab-button>
+                    <ion-icon name="heart"></ion-icon>
+                </ion-fab-button>
+            </ion-fab>
+
+
+
+        </ion-slide>
+    </ion-slides> -->

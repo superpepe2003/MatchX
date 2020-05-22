@@ -1,0 +1,226 @@
+<ion-header class="animated fadeInRight">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="animated fadeInRight scroll-content">
+  <form (ngSubmit)="onRegistro()" [formGroup]="forma" autocomplete="false">
+    <ion-slides #slideRegistro [options]="sliderOpt">
+      <ion-slide>
+        <br>
+        <br>
+        <ion-grid fixed>
+          <!-- avatar selector -->
+          <app-avatar-selector
+            class="mt-3"
+            (avatarSel)="forma.controls['avatar'].setValue($event)"
+          ></app-avatar-selector>
+          <ion-row>
+            <ion-col>
+              <ion-list>
+                <ion-item>
+                  <ion-label position="floating">Email</ion-label>
+                  <ion-input
+                    name="email"
+                    type="email"
+                    formControlName="email"
+                    [class.is-invalid] = "campoNoValido('email')"
+                  ></ion-input>
+                  <small *ngIf="campoNoValido('email')">El email no es valido</small>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Contraseña</ion-label>
+                  <ion-input
+                    name="password"
+                    type="password"
+                    formControlName="password"
+                    [class.is-invalid] = "campoNoValido('password')"
+                  ></ion-input>
+                  <small *ngIf="campoNoValido('password')">El password debe tener al menos 6 caracteres</small>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Repita Contraseña</ion-label>
+                  <ion-input
+                    name="password2"
+                    type="password"
+                    formControlName="password2"
+                    [class.is-invalid] = "pass2NoValido"
+                  ></ion-input>
+                  <small *ngIf="pass2NoValido">Los password no coinciden</small>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+          <div>
+            <a routerLink="/login" class="txt1">
+                ¿Ya tienes cuenta? / Ingresar
+            </a>
+          </div>
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="onNext()" class="mt-3" expand="full">
+                Siguiente
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-slide>
+      <ion-slide>
+        <!-- <ion-card class="card-register">
+                    <ion-card-title>Datos Extras</ion-card-title>
+                    <ion-card-content> -->
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col>
+              <ion-list>
+                <ion-item>
+                  <ion-label position="floating">Nick</ion-label>
+                  <ion-input
+                    name="nick"
+                    type="text"
+                    formControlName="nick"
+                    [class.is-invalid] = "campoNoValido('nick')"
+                  ></ion-input>
+                  <small *ngIf="campoNoValido('nick')">El nick es necesario</small>
+                </ion-item>
+                <br />
+                <ion-item>
+                  <ion-label position="floating">Nombre Completo</ion-label>
+                  <ion-input
+                    name="nombre"                    
+                    type="text"
+                    formControlName="nombreCompleto"
+                  ></ion-input>
+                </ion-item>
+                <br />
+                <ion-item>
+                  <ion-label position="floating">Estudios Cursados</ion-label>
+                  <ion-input
+                    name="estudios"
+                    type="text"
+                    formControlName="estudios"
+                  ></ion-input>
+                </ion-item>
+                <br />
+                <ion-item>
+                  <ion-label position="floating">Estatura</ion-label>
+                  <ion-input
+                    name="altura"
+                    type="number"
+                    formControlName="altura"
+                  ></ion-input>
+                </ion-item>
+                <br />
+                <ion-item>
+                  <ion-label position="floating">Fecha de Nacimiento</ion-label>
+                  <ion-datetime
+                    name="fechaNac"
+                    placeholder="Nacimiento"
+                    display-format="DD MMMM YYYY"
+                    cancelText="Cancelar!!!"
+                    month-names="Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre"
+                    formControlName="fechaNac"                    
+                  >
+                  </ion-datetime>
+                </ion-item>
+                <br />
+                <br />
+                <ion-segment
+                  name="sexo"
+                  color="primary"
+                  mode="ios"
+                  value="Hombre"
+                  formControlName="sexo"
+                >
+                  <ion-segment-button value="Hombre">
+                    <ion-icon name="male"></ion-icon>
+                    <label>Hombre</label>
+                  </ion-segment-button>
+                  <ion-segment-button value="Mujer">
+                    <ion-icon name="female"></ion-icon>
+                    <label>Mujer</label>
+                  </ion-segment-button>
+                </ion-segment>
+                <br />
+              </ion-list>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button (click)="onBack()" expand="block">
+                Volver
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button expand="block" (click)="onNext()">
+                Siguiente
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-slide>
+      <ion-slide>
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col>
+              <ion-list>
+                <ion-item>
+                  <ion-label position="floating">Mi comida preferida</ion-label>
+                  <ion-input
+                    name="cocina"                    
+                    type="text"
+                    formControlName="comida"
+                  ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Deporte</ion-label>
+                  <ion-input
+                    name="deporte"                    
+                    type="text"
+                    formControlName="deporte"
+                  ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Mi lugar en el mundo</ion-label>
+                  <ion-input
+                    name="viaje"                    
+                    type="text"
+                    formControlName="lugar"
+                  ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Cita preferida</ion-label>
+                  <ion-input
+                    name="cita"                    
+                    type="text"
+                    formControlName="cita"
+                  ></ion-input>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+          <app-fondo-selector
+            class="mt-3"
+            (fondoSel)="forma.controls['fondo'].setValue($event)"
+          ></app-fondo-selector>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button (click)="onBack()" expand="block">
+                Volver
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button expand="block" (click)="onRegistro()">
+                Registrar
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-slide>
+    </ion-slides>
+  </form>
+</ion-content>

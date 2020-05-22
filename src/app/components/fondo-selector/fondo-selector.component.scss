@@ -1,0 +1,9 @@
+.pick-fondo {
+    width: 150px;
+    opacity: 0.3;
+}
+
+.pick-fondo-seleccionado {
+    transition: opacity 0.5s linear;
+    opacity: 1 !important;
+}

@@ -1,0 +1,15 @@
+<ion-row>
+    <ion-col style="text-align: center;">
+        <h3>Seleccione fondo</h3>
+    </ion-col>
+</ion-row>
+
+<ion-row>
+    <ion-col>
+        <ion-slides [options]="fondoSlide">
+            <ion-slide *ngFor="let fondo of fondos">
+                <img class="pick-fondo" src="/assets/fondos/{{ fondo.img }}" [ngClass]="{ 'pick-fondo-seleccionado': fondo.seleccionado }" (click)="seleccionarFondo( fondo )" />
+            </ion-slide>
+        </ion-slides>
+    </ion-col>
+</ion-row>

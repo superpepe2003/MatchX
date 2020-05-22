@@ -1,0 +1,20 @@
+.chatOtro{
+    text-align: left;
+    background-color: rgb(247, 231, 231);
+    align-self: flex-start;
+}
+
+.chatMio{
+    text-align: right;
+    background-color: rgb(250, 170, 170) ;
+    align-self: flex-end;
+}
+
+.chatMensaje { 
+    overflow: visible;
+}
+
+.chatMensajes{
+    display: flex;
+    flex-direction: column;
+}
